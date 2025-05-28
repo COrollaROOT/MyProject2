@@ -1505,6 +1505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699743411}
   - component: {fileID: 1699743412}
+  - component: {fileID: 1699743413}
   m_Layer: 0
   m_Name: TitleUI_OJ
   m_TagString: Untagged
@@ -1537,6 +1538,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 384bebac6391df74bbc8c96ab8ae5be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1699743413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699743410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7af6a7686844f46a9b41cfe2e6a541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1966904922
@@ -1622,9 +1635,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1699743412}
-        m_TargetAssemblyTypeName: TitleUI, Assembly-CSharp
-        m_MethodName: OnClickStart
+      - m_Target: {fileID: 1699743413}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: GameScenesCtrl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
