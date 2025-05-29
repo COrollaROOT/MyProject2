@@ -8,9 +8,11 @@ using System;
 public class VideoOption : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Dropdown resolutionDropdown; // 변수로 선언
+    [SerializeField] private TMP_Dropdown resolutionDropdown; // 해상도 변환 변수 선언
 
     [SerializeField] private Toggle fullscreenToggle; // 전체화면용 변수 선언
+
+    [SerializeField] private TMP_Dropdown qualityDropdown; // 그래픽 품질 변수 선언
 
     private List<Resolution> resolutions = new List<Resolution>(); // 지원하는 해상도 리스트
 
@@ -19,7 +21,33 @@ public class VideoOption : MonoBehaviour
     {
         InitResolutions();
         InitFullscreen();
+        InitQuality();
     }
+
+    private void InitQuality()
+    {
+        qualityDropdown.ClearOptions();
+
+        string[] qualityNames = QualitySettings.names; // 유니티에서 제공하는 품질 이름 가져오기
+
+        qualityDropdown.AddOptions(new List<string>(qualityNames)); // Dropdown 옵션으로 추가
+
+        int savedLevel = PlayerPrefs.GetInt("QualityLevel", QualitySettings.GetQualityLevel()); // 저장된 품질 가져오기
+
+        qualityDropdown.value = savedLevel;
+        qualityDropdown.RefreshShownValue();
+        qualityDropdown.onValueChanged.AddListener(OnQualityChange);
+        QualitySettings.SetQualityLevel(savedLevel); // Dropdown 값 설정 및 품질 적용
+
+    }
+
+    private void OnQualityChange(int index)
+    {
+        QualitySettings.SetQualityLevel(index);
+        PlayerPrefs.SetInt("QualityLevel", index); // 설정 저장
+    }
+
+
 
     private void InitFullscreen()
     {
