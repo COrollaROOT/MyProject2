@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC804\uCCB4\uD654\uBA74"
+  m_text: "\uD654\uBA74 \uBCC0\uACBD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0daab31d0b844b743983ffcd534e3506, type: 2}
   m_sharedMaterial: {fileID: -1665312727892860931, guid: 0daab31d0b844b743983ffcd534e3506,
@@ -3680,8 +3680,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7447,6 +7447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 988012775}
+  fullscreenToggle: {fileID: 550176800}
 --- !u!1 &2067578638
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class VideoOption : MonoBehaviour
 {
-    
+
     [SerializeField] private TMP_Dropdown resolutionDropdown; // 변수로 선언
 
-    List<Resolution> resolutions = new List<Resolution>(); // 지원하는 해상도 리스트
+    [SerializeField] private Toggle fullscreenToggle; // 전체화면용 변수 선언
+
+    private List<Resolution> resolutions = new List<Resolution>(); // 지원하는 해상도 리스트
 
     // Called when the script is started
     void Start()
     {
         InitResolutions();
+        InitFullscreen();
+    }
+
+    private void InitFullscreen()
+    {
+        bool isFullscereen = PlayerPrefs.GetInt("Fullscreen", Screen.fullScreen ? 1 : 0) == 1; // 저장된 설정 불러오기
+        fullscreenToggle.isOn = isFullscereen; // 토글로 상태 변환
+        fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggle); // 토글 변경시 이벤트 발생
+        Screen.fullScreen = isFullscereen; // 실제 화면에 적용
+    }
+
+    void OnFullscreenToggle(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
     }
 
     void InitResolutions()
@@ -96,7 +114,7 @@ public class VideoOption : MonoBehaviour
 
         void OnResolutionChage(int index) // 해상도 변경할때 호출
         {
-            if (index <  0 || index >= resolutions.Count) return;
+            if (index < 0 || index >= resolutions.Count) return;
 
             Resolution resolution = resolutions[index];
 
@@ -104,6 +122,12 @@ public class VideoOption : MonoBehaviour
 
             PlayerPrefs.SetInt("ResolutionIndex", index);
         }
+
+
+        
+        
+
+        
 
 
 
