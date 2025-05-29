@@ -6,7 +6,8 @@ using TMPro;
 
 public class VideoOption : MonoBehaviour
 {
-    [SerializeField] private Dropdown resolutionDropdown; // 변수로 선언
+    
+    [SerializeField] private TMP_Dropdown resolutionDropdown; // 변수로 선언
 
     List<Resolution> resolutions = new List<Resolution>(); // 지원하는 해상도 리스트
 
