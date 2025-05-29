@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 1414903365}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 172617829}
@@ -7409,7 +7409,7 @@ GameObject:
   - component: {fileID: 2065304444}
   - component: {fileID: 2065304445}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: OptionUIObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
