@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TitleUI : MonoBehaviour
 {
+
+    public OptionUI optionUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class TitleUI : MonoBehaviour
     public void OnClickOption() // 버튼을 클릭 하면 옵션
     {
         Debug.Log("옵션");
+        optionUI.Open();
     }
 
     public void OnClickQuit() // 버튼을 클릭 하면 종료
