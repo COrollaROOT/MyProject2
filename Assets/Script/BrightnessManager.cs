@@ -24,7 +24,7 @@ public class BrightnessManager : MonoBehaviour
         brightnessSlider.onValueChanged.AddListener(OnBrightnessChanged);
     }
 
-    private void OnBrightnessChanged(float value)
+    public void OnBrightnessChanged(float value)
     {
         ApplyBrightness(value);
         PlayerPrefs.SetFloat(BRIGHTNESS_KEY, value);
