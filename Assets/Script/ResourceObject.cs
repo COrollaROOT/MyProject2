@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ResourceType { Tree, Rock } // 자원 종류
 public class ResourceObject : MonoBehaviour
 {
+    public ResourceType resourceType;
+
     public int maxHp = 5;
 
     public GameObject dropItemPrefab;

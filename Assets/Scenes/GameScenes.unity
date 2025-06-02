@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  kind: 1
   damage: 1
   rate: 0.4
   meleeArea: {fileID: 65929916}
@@ -733,6 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  kind: 0
   damage: 0
   rate: 0.4
   meleeArea: {fileID: 583085782}
@@ -876,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f982df3f9ff4e4c87255b1c8146da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceType: 1
   maxHp: 5
   dropItemPrefab: {fileID: 1149285084}
   dropAmount: 1
@@ -1845,6 +1848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f982df3f9ff4e4c87255b1c8146da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceType: 0
   maxHp: 5
   dropItemPrefab: {fileID: 41932734}
   dropAmount: 1
@@ -2391,6 +2395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  kind: 0
   damage: 1
   rate: 0.4
   meleeArea: {fileID: 1933630090}

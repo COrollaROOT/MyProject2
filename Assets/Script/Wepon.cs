@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS;
 using UnityEngine;
+
+
 
 public class Wepon : MonoBehaviour
 {
 
     public enum Type { Melee }
+    public enum Weaponkind { Axe, Hammer }
     public Type type;
+    public Weaponkind kind; // 무기 종류 추가
+
     public int damage;
     public float rate;
     public BoxCollider meleeArea;
@@ -43,14 +49,22 @@ public class Wepon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+
         // 자원(ResourceObject)에 데미지 주기
         if (other.CompareTag("Resource"))
         {
             ResourceObject resource = other.GetComponent<ResourceObject>();
             if (resource != null)
             {
-                resource.TakeDamage(damage);
+                if ((resource.resourceType == ResourceType.Tree && kind == Weaponkind.Axe) ||
+                    (resource.resourceType == ResourceType.Rock && kind == Weaponkind.Hammer))
+                {
+                    Debug.Log("이 무기는 이 자원에 효과가 없습니다.");
+                    resource.TakeDamage(damage);
+                }
             }
+                
         }
     }
 
