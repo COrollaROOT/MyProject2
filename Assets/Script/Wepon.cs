@@ -41,4 +41,17 @@ public class Wepon : MonoBehaviour
     // Use() 메인루틴 -> Swing() 서부루틴 -> Use() 메인루틴
     // Use() 메인루틴 + Swing() 코루틴 (Co-Op)
 
+    private void OnTriggerEnter(Collider other)
+    {
+        // 자원(ResourceObject)에 데미지 주기
+        if (other.CompareTag("Resource"))
+        {
+            ResourceObject resource = other.GetComponent<ResourceObject>();
+            if (resource != null)
+            {
+                resource.TakeDamage(damage);
+            }
+        }
+    }
+
 }

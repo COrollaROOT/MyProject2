@@ -9,6 +9,7 @@ TagManager:
   - Gold
   - Animal
   - Melee
+  - Resource
   layers:
   - Default
   - TransparentFX
