@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
     public float speed;
     public GameObject[] Weaponns;  // 무기 오브젝트들
     public bool[] hasWeapons;      // 무기 소지 여부
@@ -26,14 +27,15 @@ public class Player : MonoBehaviour
     Animator anim;
 
     GameObject nearObject;
+    Inventory inventory;
 
     float fireDelay;
 
     
 
-    private void Awake()
+    void Awake()
     {
-
+        inventory = GetComponent<Inventory>();
     }
 
     void Start()
@@ -119,12 +121,20 @@ public class Player : MonoBehaviour
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
 
-                // 획득한 무기만 활성화
+                // 무기 장착
                 for (int i = 0; i < Weaponns.Length; i++)
-                {
                     Weaponns[i].SetActive(i == weaponIndex);
-                }
 
+                anim.SetInteger("weaponType", weaponIndex);
+                inventory.AddItem("Weapon" + weaponIndex);  // 무기 이름으로 저장
+
+                Destroy(nearObject);
+            }
+
+            else if (nearObject.CompareTag("ResourceItem"))
+            {
+                ResourceItem item = nearObject.GetComponent<ResourceItem>();
+                inventory.AddItem(item.resourceName, item.amount);
                 Destroy(nearObject);
             }
         }
@@ -160,9 +170,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Weapon"))
+        if (other.CompareTag("Weapon") || other.CompareTag("ResourceItem"))
         {
-            nearObject = null;
+            nearObject = other.gameObject;
         }
     }
 }
