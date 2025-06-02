@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
 
     bool wDown;
     bool iDown;
+    bool fDown;
 
     bool sDown1;
     bool sDown2;
     bool sDown3;
+
+    bool isFireReady;
 
     Vector3 moveVec;
 
@@ -24,14 +27,25 @@ public class Player : MonoBehaviour
 
     GameObject nearObject;
 
+    float fireDelay;
+
+    
+
     private void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
+
     }
 
     void Start()
     {
-        // 시작 시 모든 무기 비활성화
+        anim = GetComponentInChildren<Animator>();
+
+        anim.ResetTrigger("doSwing");        // 트리거 초기화
+        anim.SetInteger("weaponType", -1);   // 무기 없는 상태
+        anim.SetBool("IsRun", false);
+        anim.SetBool("IsWalk", false);
+
+        // 모든 무기 비활성화
         for (int i = 0; i < Weaponns.Length; i++)
         {
             Weaponns[i].SetActive(false);
@@ -44,6 +58,8 @@ public class Player : MonoBehaviour
         Move();
         Interration();
         Swap();
+        Attack();
+
     }
 
     void GetInput()
@@ -57,6 +73,25 @@ public class Player : MonoBehaviour
         sDown1 = Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1);
         sDown2 = Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2);
         sDown3 = Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3);
+
+        fDown = Input.GetButtonDown("Fire1");
+    }
+
+    void Attack()
+    {
+        if (!fDown) return;
+
+        for (int i = 0; i < Weaponns.Length; i++)
+        {
+            if (Weaponns[i].activeSelf)
+            {
+                anim.SetTrigger("doSwing");
+
+                Wepon weapon = Weaponns[i].GetComponent<Wepon>();
+                weapon.Use();
+                break;
+            }
+        }
     }
 
     void Move()
@@ -109,6 +144,9 @@ public class Player : MonoBehaviour
             {
                 Weaponns[i].SetActive(i == weaponIndex);
             }
+
+            // 무기 애니메이션 전환을 위한 파라미터 전달
+            anim.SetInteger("weaponType", weaponIndex);
         }
     }
 
