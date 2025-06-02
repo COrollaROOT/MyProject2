@@ -10,6 +10,7 @@ TagManager:
   - Animal
   - Melee
   - Resource
+  - ResourceItem
   layers:
   - Default
   - TransparentFX

@@ -128,6 +128,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1872799755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &41932742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41932734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b9db7593d7ff143ab0197ea374e65b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceName: Wood
+  amount: 1
 --- !u!1 &64183156
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +238,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: f8b2e32b2055de547a62ba0f81dbe055, type: 3}
       propertyPath: m_Name
-      value: SM_Wep_Hammer_03
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: f8b2e32b2055de547a62ba0f81dbe055, type: 3}
       propertyPath: m_IsActive
@@ -405,7 +419,7 @@ PrefabInstance:
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_Name
-      value: Cube (2)
+      value: SM_Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 1361710288787531100, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
@@ -498,18 +512,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 580182671866342216, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 580182671866342216, guid: 3027f4ea8986e024592a872e15f8a405,
+        type: 3}
       propertyPath: value
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_Name
-      value: Cube (4)
+      value: Stone
       objectReference: {fileID: 0}
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_TagString
-      value: Item
+      value: ResourceItem
       objectReference: {fileID: 0}
     - target: {fileID: 1361710288787531100, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
@@ -610,7 +629,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8314077028595990280, guid: 3027f4ea8986e024592a872e15f8a405, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1149285092}
   m_SourcePrefab: {fileID: 100100000, guid: 3027f4ea8986e024592a872e15f8a405, type: 3}
 --- !u!1001 &583085776
 PrefabInstance:
@@ -622,7 +645,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: a8ffd0e8d7bda65479d45a9e263df21f, type: 3}
       propertyPath: m_Name
-      value: SM_Item_Hammer_02
+      value: SM_Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a8ffd0e8d7bda65479d45a9e263df21f, type: 3}
       propertyPath: m_IsActive
@@ -797,7 +820,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: ed0915b81cec3984ead17abe317137b5, type: 3}
       propertyPath: m_Name
-      value: SM_Env_Bush_Small_01
+      value: Rock
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ed0915b81cec3984ead17abe317137b5, type: 3}
       propertyPath: m_TagString
@@ -1520,6 +1543,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 232125570}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149285092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149285084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b9db7593d7ff143ab0197ea374e65b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceName: Stone
+  amount: 1
 --- !u!1 &1262184767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,7 +1691,7 @@ PrefabInstance:
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_Name
-      value: Cube (5)
+      value: gold
       objectReference: {fileID: 0}
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
@@ -1767,7 +1804,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 62e48df5cbb9ce24ba3c796f4d17ed2a, type: 3}
       propertyPath: m_Name
-      value: SM_Env_Bush_Flowers_02
+      value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 62e48df5cbb9ce24ba3c796f4d17ed2a, type: 3}
       propertyPath: m_TagString
@@ -2055,18 +2092,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 580182671866342216, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 580182671866342216, guid: 3027f4ea8986e024592a872e15f8a405,
+        type: 3}
       propertyPath: value
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_Name
-      value: Cube (3)
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_TagString
-      value: Item
+      value: ResourceItem
       objectReference: {fileID: 0}
     - target: {fileID: 1361710288787531100, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
@@ -2167,7 +2209,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8314077028595990280, guid: 3027f4ea8986e024592a872e15f8a405, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 41932742}
   m_SourcePrefab: {fileID: 100100000, guid: 3027f4ea8986e024592a872e15f8a405, type: 3}
 --- !u!1001 &1886270280
 PrefabInstance:
@@ -2185,7 +2231,7 @@ PrefabInstance:
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_Name
-      value: Cube (1)
+      value: Axe
       objectReference: {fileID: 0}
     - target: {fileID: 1361710288787531100, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
@@ -2283,7 +2329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 334adb6274e4027479adb009b2f33fd2, type: 3}
       propertyPath: m_Name
-      value: SM_Wep_Axe_02
+      value: Axe
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 334adb6274e4027479adb009b2f33fd2, type: 3}
       propertyPath: m_IsActive
@@ -2696,6 +2742,7 @@ GameObject:
   - component: {fileID: 543450651597224055}
   - component: {fileID: 2144690079}
   - component: {fileID: 2144690078}
+  - component: {fileID: 919132147944022734}
   - component: {fileID: 2144690081}
   m_Layer: 0
   m_Name: Idle
@@ -2704,6 +2751,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132147944022734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147944022733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73de4075d0cdb34ab95b989c5866c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1031632035961094698
 Transform:
   m_ObjectHideFlags: 0
@@ -4373,7 +4432,7 @@ PrefabInstance:
     - target: {fileID: 962463954652282107, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 1361710288787531100, guid: 3027f4ea8986e024592a872e15f8a405,
         type: 3}
