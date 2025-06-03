@@ -113,32 +113,43 @@ public class Player : MonoBehaviour
 
     void Interration()
     {
-        if (iDown && nearObject != null)
-        {
-            if (nearObject.tag == "Weapon")
+        
+        
+            if (iDown && nearObject != null)
             {
-                Item item = nearObject.GetComponent<Item>();
-                int weaponIndex = item.value;
-                hasWeapons[weaponIndex] = true;
+                var item = nearObject.GetComponent<Item>();
+                if (item == null) return;
 
-                // 무기 장착
-                for (int i = 0; i < Weaponns.Length; i++)
-                    Weaponns[i].SetActive(i == weaponIndex);
+                switch (item.itemType)
+                {
+                    case Item.ItemType.Weapon:
+                        int weaponIndex = item.value;
+                        hasWeapons[weaponIndex] = true;
 
-                anim.SetInteger("weaponType", weaponIndex);
-                inventory.AddItem("Weapon" + weaponIndex);  // 무기 이름으로 저장
+                        for (int i = 0; i < Weaponns.Length; i++)
+                            Weaponns[i].SetActive(i == weaponIndex);
 
-                Destroy(nearObject);
-            }
+                        anim.SetInteger("weaponType", weaponIndex);
 
-            else if (nearObject.CompareTag("ResourceItem"))
-            {
-                ResourceItem item = nearObject.GetComponent<ResourceItem>();
-                inventory.AddItem(item.resourceName, item.amount);
-                Destroy(nearObject);
+                        inventory.AddItem(item.itemName);  // 무기 이름으로 추가
+
+                        Destroy(nearObject);
+                        break;
+
+                    case Item.ItemType.Resource:
+                        inventory.AddItem(item.itemName, 1);
+                        Destroy(nearObject);
+                        break;
+
+                    case Item.ItemType.Coin:
+                        inventory.AddItem(item.itemName, item.value);
+                        Destroy(nearObject);
+                        break;
+                }
             }
         }
-    }
+
+    
 
     void Swap()
     {
@@ -162,7 +173,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Weapon"))
+        if (other.CompareTag("Weapon") || other.CompareTag("ResourceItem"))
         {
             nearObject = other.gameObject;
         }
@@ -172,7 +183,8 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Weapon") || other.CompareTag("ResourceItem"))
         {
-            nearObject = other.gameObject;
+            if (nearObject == other.gameObject)
+                nearObject = null;  // 벗어난 오브젝트가 현재 nearObject라면 null로 초기화
         }
     }
 }

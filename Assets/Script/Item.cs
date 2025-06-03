@@ -1,11 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum Type { Weapon, Item, Coin }
-    public Type type;
+    public enum ItemType
+    {
+        Weapon,
+        Resource,
+        Coin
+    }
+
+    public ItemType itemType;
+    public string itemName;
     public int value;
 
     private void Update()
@@ -13,3 +18,4 @@ public class Item : MonoBehaviour
         transform.Rotate(Vector3.up * 20 * Time.deltaTime);
     }
 }
+
