@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; 
-
+using TMPro;
+using UnityEditor;
 public class ItemSlotUI : MonoBehaviour
 {
     [SerializeField] private Image iconImage;
