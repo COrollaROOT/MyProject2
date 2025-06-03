@@ -37,6 +37,30 @@ public class Inventory : MonoBehaviour
         Coin
     }
 
+
+    public bool HasItem(string itemName, int amount = 1)
+    {
+        return items.ContainsKey(itemName) && items[itemName] >= amount;
+    }
+
+    public void UseItem(string itemName, int amount = 1)
+    {
+        if (!items.ContainsKey(itemName))
+        {
+            Debug.LogWarning($" '{itemName}' 아이템이 인벤토리에 없습니다. 사용 불가.");
+            return;
+        }
+
+        items[itemName] -= amount;
+
+        if (items[itemName] <= 0)
+        {
+            items.Remove(itemName);
+        }
+
+        UpdateUI(itemName);
+    }
+
     public void AddItem(string itemName, int amount = 1)
     {
         if (!itemDict.ContainsKey(itemName))
@@ -55,6 +79,18 @@ public class Inventory : MonoBehaviour
 
     private void UpdateUI(string itemName)
     {
+        if (!itemDict.ContainsKey(itemName))
+        {
+            Debug.LogWarning($" '{itemName}'은 아이템 데이터베이스에 없습니다.");
+            return;
+        }
+
+        if (!items.ContainsKey(itemName))
+        {
+            Debug.LogWarning($" '{itemName}' 아이템은 인벤토리 목록에 없습니다.");
+            return;
+        }
+
         if (!slotUIs.TryGetValue(itemName, out ItemSlotUI slotUI))
         {
             GameObject slotObj = Instantiate(slotPrefab, slotParent);

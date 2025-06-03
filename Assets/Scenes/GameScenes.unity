@@ -1019,7 +1019,7 @@ MonoBehaviour:
   resourceType: 1
   maxHp: 5
   dropItemPrefab: {fileID: 1149285084}
-  dropAmount: 1
+  dropAmount: 30
 --- !u!65 &753082807
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1671,7 +1671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceName: Stone
-  amount: 1
+  amount: 10
 --- !u!1 &1166685563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2888,9 @@ MonoBehaviour:
   - {fileID: 1933630086}
   - {fileID: 583085777}
   hasWeapons: 000000
+  roadPrefab: {fileID: 5216677119193713201, guid: 311a744aca561ec4d8238b0253f8c92b,
+    type: 3}
+  roadCost: 1
 --- !u!95 &2144690079
 Animator:
   serializedVersion: 5

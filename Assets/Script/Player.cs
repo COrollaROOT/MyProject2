@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +6,11 @@ public class Player : MonoBehaviour
 {
     
     public float speed;
-    public GameObject[] Weaponns;  // ¹«±â ¿ÀºêÁ§Æ®µé
-    public bool[] hasWeapons;      // ¹«±â ¼ÒÁö ¿©ºÎ
+    public GameObject[] Weaponns;  // ë¬´ê¸° ì˜¤ë¸Œì íŠ¸ë“¤
+    public bool[] hasWeapons;      // ë¬´ê¸° ì†Œì§€ ì—¬ë¶€
+    public GameObject roadPrefab;     // ê¸¸ í”„ë¦¬íŒ¹
+    public int roadCost = 3;         // í•„ìš”í•œ ëŒ ê°œìˆ˜
+    public float buildDistance = 2f;
 
     float hAxis;
     float vAxis;
@@ -42,12 +45,12 @@ public class Player : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
 
-        anim.ResetTrigger("doSwing");        // Æ®¸®°Å ÃÊ±âÈ­
-        anim.SetInteger("weaponType", -1);   // ¹«±â ¾ø´Â »óÅÂ
+        anim.ResetTrigger("doSwing");        // íŠ¸ë¦¬ê±° ì´ˆê¸°í™”
+        anim.SetInteger("weaponType", -1);   // ë¬´ê¸° ì—†ëŠ” ìƒíƒœ
         anim.SetBool("IsRun", false);
         anim.SetBool("IsWalk", false);
 
-        // ¸ğµç ¹«±â ºñÈ°¼ºÈ­
+        // ëª¨ë“  ë¬´ê¸° ë¹„í™œì„±í™”
         for (int i = 0; i < Weaponns.Length; i++)
         {
             Weaponns[i].SetActive(false);
@@ -61,6 +64,10 @@ public class Player : MonoBehaviour
         Interration();
         Swap();
         Attack();
+        if (Input.GetKeyDown(KeyCode.R))  // B í‚¤ë¥¼ ëˆŒëŸ¬ì„œ ê¸¸ ë§Œë“¤ê¸°
+        {
+            BuildRoad();
+        }
 
     }
 
@@ -71,7 +78,7 @@ public class Player : MonoBehaviour
         wDown = Input.GetButton("Walk");
         iDown = Input.GetKeyDown(KeyCode.E);
 
-        // ¼ıÀÚ Å° ÀÔ·Â ¼öÁ¤
+        // ìˆ«ì í‚¤ ì…ë ¥ ìˆ˜ì •
         sDown1 = Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1);
         sDown2 = Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2);
         sDown3 = Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3);
@@ -131,7 +138,7 @@ public class Player : MonoBehaviour
 
                         anim.SetInteger("weaponType", weaponIndex);
 
-                        inventory.AddItem(item.itemName);  // ¹«±â ÀÌ¸§À¸·Î Ãß°¡
+                        inventory.AddItem(item.itemName);  // ë¬´ê¸° ì´ë¦„ìœ¼ë¡œ ì¶”ê°€
 
                         Destroy(nearObject);
                         break;
@@ -149,7 +156,20 @@ public class Player : MonoBehaviour
             }
         }
 
-    
+    void BuildRoad()
+    {
+        if (inventory.HasItem("Stone", 1))
+        {
+            Vector3 buildPos = transform.position + transform.forward * buildDistance;
+            Instantiate(roadPrefab, buildPos, Quaternion.identity);
+
+            inventory.UseItem("Stone", 1);  // ëŒ 1ê°œ ì‚¬ìš©
+        }
+        else
+        {
+            Debug.Log("ëŒì´ ë¶€ì¡±í•©ë‹ˆë‹¤!");
+        }
+    }
 
     void Swap()
     {
@@ -166,7 +186,7 @@ public class Player : MonoBehaviour
                 Weaponns[i].SetActive(i == weaponIndex);
             }
 
-            // ¹«±â ¾Ö´Ï¸ŞÀÌ¼Ç ÀüÈ¯À» À§ÇÑ ÆÄ¶ó¹ÌÅÍ Àü´Ş
+            // ë¬´ê¸° ì• ë‹ˆë©”ì´ì…˜ ì „í™˜ì„ ìœ„í•œ íŒŒë¼ë¯¸í„° ì „ë‹¬
             anim.SetInteger("weaponType", weaponIndex);
         }
     }
@@ -184,7 +204,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Weapon") || other.CompareTag("ResourceItem"))
         {
             if (nearObject == other.gameObject)
-                nearObject = null;  // ¹ş¾î³­ ¿ÀºêÁ§Æ®°¡ ÇöÀç nearObject¶ó¸é null·Î ÃÊ±âÈ­
+                nearObject = null;  // ë²—ì–´ë‚œ ì˜¤ë¸Œì íŠ¸ê°€ í˜„ì¬ nearObjectë¼ë©´ nullë¡œ ì´ˆê¸°í™”
         }
     }
 }
