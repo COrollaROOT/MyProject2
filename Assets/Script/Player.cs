@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class Player : MonoBehaviour
     public GameObject roadPrefab;     // 길 프리팹
     public int roadCost = 3;         // 필요한 돌 개수
     public float buildDistance = 2f;
+
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
     float hAxis;
     float vAxis;
@@ -33,13 +37,15 @@ public class Player : MonoBehaviour
     GameObject nearObject;
     Inventory inventory;
 
-    float fireDelay;
+    //float fireDelay;
 
-    
+
 
     void Awake()
     {
         inventory = GetComponent<Inventory>();
+
+       
     }
 
     void Start()
@@ -65,7 +71,7 @@ public class Player : MonoBehaviour
         Interration();
         Swap();
         Attack();
-        if (Input.GetKeyDown(KeyCode.R))  // B 키를 눌러서 길 만들기
+        if (Input.GetKeyDown(KeyCode.R))  // R 키를 눌러서 길 만들기
         {
             BuildRoad();
         }
@@ -77,14 +83,14 @@ public class Player : MonoBehaviour
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
         wDown = Input.GetButton("Walk");
-        iDown = Input.GetKeyDown(KeyCode.E);
+        iDown = Input.GetKeyDown(KeyCode.E); // 아이템 줍기
 
         // 숫자 키 입력 수정
         sDown1 = Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1);
         sDown2 = Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2);
         sDown3 = Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3);
 
-        fDown = Input.GetButtonDown("Fire1");
+        fDown = Input.GetButtonDown("Fire1"); // 공격
     }
 
     void Attack()
@@ -162,9 +168,12 @@ public class Player : MonoBehaviour
         if (inventory.HasItem("Stone", 1))
         {
             Vector3 buildPos = transform.position + transform.forward * buildDistance;
-            Instantiate(roadPrefab, buildPos, Quaternion.identity);
+            GameObject newRoad = Instantiate(roadPrefab, buildPos, Quaternion.identity);
 
             inventory.UseItem("Stone", 1);  // 돌 1개 사용
+            // RoadManager.Instance?.RegisterRoad(buildPos);
+
+            navMeshSurface.BuildNavMesh();
         }
         else
         {
