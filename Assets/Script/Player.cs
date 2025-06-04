@@ -7,6 +7,9 @@ using Unity.AI.Navigation;
 
 public class Player : MonoBehaviour
 {
+
+    private Rigidbody rigid;
+
     int currentWeaponIndex = -1;
     public float speed;
     public GameObject[] Weaponns;  // 무기 오브젝트들
@@ -45,7 +48,9 @@ public class Player : MonoBehaviour
     {
         inventory = GetComponent<Inventory>();
 
-       
+        rigid = GetComponent<Rigidbody>();
+        rigid.collisionDetectionMode = CollisionDetectionMode.Continuous; // 터널링 방지용
+        rigid.interpolation = RigidbodyInterpolation.Interpolate; // 부드러운 움직임
     }
 
     void Start()
@@ -64,10 +69,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
     void Update()
     {
         GetInput();
-        Move();
+        
         Interration();
         Swap();
         Attack();
@@ -114,7 +124,13 @@ public class Player : MonoBehaviour
     {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
 
-        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
+        Vector3 nextVec = moveVec * speed * (wDown ? 0.3f : 1f) * Time.fixedDeltaTime;
+
+        float maxDistance = 0.2f;
+        if (nextVec.magnitude > maxDistance)
+            nextVec = nextVec.normalized * maxDistance;
+
+        rigid.MovePosition(rigid.position + nextVec);
 
         anim.SetBool("IsRun", moveVec != Vector3.zero);
         anim.SetBool("IsWalk", wDown);
