@@ -178,19 +178,20 @@ public class Player : MonoBehaviour
             return ;
         }
 
-        if (inventory.HasItem("Stone", 1))
+        if (inventory.HasItem("Stone", 2) && inventory.HasItem("Wood", 1))
         {
             Vector3 buildPos = transform.position + transform.forward * buildDistance;
             GameObject newRoad = Instantiate(roadPrefab, buildPos, Quaternion.identity);
 
-            inventory.UseItem("Stone", 1);  // 돌 1개 사용
+            inventory.UseItem("Stone", 2);  // 돌 2개 사용
+            inventory.UseItem("Wood", 1);
             // RoadManager.Instance?.RegisterRoad(buildPos);
 
             navMeshSurface.BuildNavMesh();
         }
         else
         {
-            Debug.Log("돌이 부족합니다!");
+            Debug.Log("재료가 부족합니다! (필요 : 돌 2개, 나무 1개)");
         }
     }
 
