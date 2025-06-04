@@ -62,10 +62,11 @@ public class Wepon : MonoBehaviour
                     (resource.resourceType == ResourceType.Rock && kind == Weaponkind.Hammer))
                 {
                     Debug.Log("이 무기는 이 자원에 효과가 없습니다.");
-                    resource.TakeDamage(damage);
+                    return;
                 }
+                resource.TakeDamage(damage);
             }
-                
+
         }
     }
 
