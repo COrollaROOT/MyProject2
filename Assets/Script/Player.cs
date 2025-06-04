@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
 
         Vector3 nextVec = moveVec * speed * (wDown ? 0.3f : 1f) * Time.fixedDeltaTime;
 
-        float maxDistance = 0.2f;
+        float maxDistance = 0.1f;
         if (nextVec.magnitude > maxDistance)
             nextVec = nextVec.normalized * maxDistance;
 
