@@ -11,6 +11,7 @@ TagManager:
   - Melee
   - Resource
   - ResourceItem
+  - Goal
   layers:
   - Default
   - TransparentFX
