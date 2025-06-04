@@ -10,7 +10,7 @@ public class Wepon : MonoBehaviour
 {
 
     public enum Type { Melee }
-    public enum Weaponkind { Axe, Hammer }
+    public enum Weaponkind { Axe, Hammer, Shovel }
     public Type type;
     public Weaponkind kind; // 무기 종류 추가
 
@@ -58,8 +58,8 @@ public class Wepon : MonoBehaviour
             ResourceObject resource = other.GetComponent<ResourceObject>();
             if (resource != null)
             {
-                if ((resource.resourceType == ResourceType.Tree && kind == Weaponkind.Axe) ||
-                    (resource.resourceType == ResourceType.Rock && kind == Weaponkind.Hammer))
+                if ((resource.resourceType == ResourceType.Tree && kind == Weaponkind.Hammer) ||
+                    (resource.resourceType == ResourceType.Rock && kind == Weaponkind.Axe))
                 {
                     Debug.Log("이 무기는 이 자원에 효과가 없습니다.");
                     return;

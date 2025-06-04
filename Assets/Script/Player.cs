@@ -7,7 +7,7 @@ using Unity.AI.Navigation;
 
 public class Player : MonoBehaviour
 {
-    
+    int currentWeaponIndex = -1;
     public float speed;
     public GameObject[] Weaponns;  // 무기 오브젝트들
     public bool[] hasWeapons;      // 무기 소지 여부
@@ -165,6 +165,19 @@ public class Player : MonoBehaviour
 
     void BuildRoad()
     {
+        if (currentWeaponIndex != 2 || Weaponns.Length <= 2 || Weaponns[2] == null)
+        {
+            Debug.Log("삽을 장착해야 합니다.");
+            return;
+        }
+
+        Wepon weapon = Weaponns[2].GetComponent<Wepon>();
+        if (weapon == null || weapon.kind != Wepon.Weaponkind.Shovel)
+        {
+            Debug.Log("이 무기는 길을 만들수 없습니다 삽을 사용하세요");
+            return ;
+        }
+
         if (inventory.HasItem("Stone", 1))
         {
             Vector3 buildPos = transform.position + transform.forward * buildDistance;
@@ -191,6 +204,9 @@ public class Player : MonoBehaviour
 
         if (weaponIndex >= 0 && hasWeapons[weaponIndex])
         {
+
+            currentWeaponIndex = weaponIndex;
+
             for (int i = 0; i < Weaponns.Length; i++)
             {
                 Weaponns[i].SetActive(i == weaponIndex);
